@@ -1,0 +1,19 @@
+body{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: antiquewhite;
+    margin: 1%;
+}
+.kasi{
+    background-color: aqua;
+    overflow: hidden;
+    font-size: 30px;
+    cursor: pointer;
+}
+.kasi a{
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+.kasi a:hover{
+    background-color: bisque;
+    color: rgb(253, 2, 2);
+}

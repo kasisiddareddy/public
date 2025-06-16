@@ -1,0 +1,88 @@
+.left-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+header.ss {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #050000;
+    color: white;
+}
+.logo {
+    height: 60px;
+    width: auto;
+}
+nav.sk {
+    display: flex;
+    gap: 20px;
+}
+nav.sk a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav.sk a:hover {
+    text-decoration: underline;
+}
+.Category_links{
+    display: flex;
+    justify-content: space-around;
+ }
+.Category_links a {
+    color: white;
+    text-decoration: none;
+}
+main p a{
+    font-weight: bold;
+    text-decoration: none;
+    font-weight: bold;
+    color: #050000;
+    border-radius: 6px;
+    padding: 20px 10px;
+    background-color: white;
+    text-align: center;
+}
+.product {
+    background-color: #111;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 220px;
+    text-align: center;
+}
+.uses {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+.all_products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+button {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-top: 10px;
+}
+button a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+button:hover {
+    background-color: #ddd;
+}
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #050000;
+    color: #fdfcfc;
+}
