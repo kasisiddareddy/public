@@ -20,8 +20,8 @@
                 <input type="text" id="name" required placeholder="Enter Name">
             </div>
             <div class="input-group">
-                <label for="number">Mobile:</label>
-                <input type="number" id="number" required placeholder="Enter Number">
+                <label for="phone">Mobile:</label>
+                <input type="text" id="phone" required placeholder="Enter 10-digit Mobile Number" maxlength="10">
             </div>
             <div class="input-group">
                 <label for="password">Password:</label>
@@ -36,42 +36,66 @@
         </form>
     </div>
     <script>
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault(); 
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
     const email = document.getElementById("email").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("conform-password").value;
     const errorMsg = document.getElementById("errorMsg");
 
+    errorMsg.style.display = "none";
     errorMsg.textContent = "";
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!email || !password || !confirmPassword) {
-        errorMsg.textContent = "Please fill in all fields.";
+    // Validation
+    if (!email || !name || !phone || !password || !confirmPassword) {
+        errorMsg.textContent = "All fields are required.";
+        errorMsg.style.display = "block";
         return;
     }
 
-    if (!emailRegex.test(email)) {
-        errorMsg.textContent = "Please enter a valid email address.";
+    // Email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        errorMsg.textContent = "Invalid email format.";
+        errorMsg.style.display = "block";
         return;
     }
 
+    // Phone number length
+    // Mobile number validation (only digits and exactly 10 digits)
+    if (!/^\d{10}$/.test(phone)) {
+    errorMsg.textContent = "Phone number must be exactly 10 digits.";
+    errorMsg.style.display = "block";
+    return;
+    }
+
+
+    // Password match
     if (password !== confirmPassword) {
         errorMsg.textContent = "Passwords do not match.";
+        errorMsg.style.display = "block";
         return;
     }
 
-    if (password.length < 6) {
-        errorMsg.textContent = "Password should be at least 6 characters.";
-        return;
-    }
+    // Optional: Save to localStorage (simulating a registered user)
+    const userData = {
+        email: email,
+        name: name,
+        phone: phone,
+        password: password  // ⚠️ For demo only — in real apps, never store passwords in plain text
+    };
 
+    localStorage.setItem("registeredUser", JSON.stringify(userData));
     alert("Registration successful!");
-    window.location.href = "login.html";
+
+    // Redirect to login or home page
+    window.location.href = "login.html";  // change as needed
 });
 </script>
+
 
 </body>
 </html>

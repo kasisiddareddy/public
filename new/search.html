@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Functionality</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+        .category {
+            color: #666;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Item Search</h1>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <div id="results"></div>
+
+    <script>
+
+        const data = [ 
+            { name: "Apple", category: "Fruit" }, 
+            { name: "Broccoli", category: "Vegetable" }, 
+            { name: "Carrot", category: "Vegetable" }, 
+            { name: "Mango", category: "Fruit" } 
+        ];
+        const searchInput = document.getElementById("searchInput");
+        const resultsDiv = document.getElementById("results");
+
+        function renderItems(items) {
+            resultsDiv.innerHTML = '';
+            
+            if (items.length === 0) {
+                resultsDiv.innerHTML = '<p>No items found</p>';
+                return;
+            }
+            
+            items.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <strong>${item.name}</strong>
+                    <div class="category">${item.category}</div>
+                `;
+                resultsDiv.appendChild(itemElement);
+            });
+        }
+        
+        // Initial render
+        renderItems(data);
+        
+        // Search functionality
+        searchInput.addEventListener("keyup", () => {
+            const searchValue = searchInput.value.toLowerCase();
+            
+            const filtered = data.filter(item => 
+                item.name.toLowerCase().includes(searchValue) ||
+                item.category.toLowerCase().includes(searchValue)
+            );
+            
+            renderItems(filtered);
+        });
+    </script>
+</body>
+</html>

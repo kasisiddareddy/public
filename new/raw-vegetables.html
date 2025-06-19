@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="raw-vegetables.css">
     <link rel="shortcut icon" href="photos/newLogo.png" >
     <title>Fresh Vegetables</title>
+    <script src="logout.js"></script>
 </head>
 <body>
     <header class="header"><div>
         
         <h1><a href="raw.html"><img src="photos/newLogo.png" alt="hello" width="40px"></a>SV Fresh Grocery</h1></div>
         <nav class="navbar">
-          <div class="search-box">
-                <input type="text" placeholder="Search..." />
-                <button><i class="fa fa-search"></i></button>
-            </div>
+          <div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search categories..." />
+  <div class="category-results" id="categoryResults">
+  </div>
+</div>
+
+
+
             <a href="#"><i class="fa-solid fa-house"></i> Home</a>
             <div class="navbar-content">
                 <a href="#"><i class="fa-solid fa-box"></i> Products <i class="fa-solid fa-caret-down"></i></a>
@@ -28,11 +33,19 @@
                     <a href="raw-homeneeds.html">Homeneeds</a>
                 </div>
             </div>
-            <a href="login.html"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login/Register</a>
+            <a href="#" id="loginLogoutBtn"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+
             <a href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
             
         </nav>
     </header>
+    <div class="slider">
+        <a href="raw-fruits.html">Fruits</a>
+        <a href="raw-vegetables.html">Vegetables</a>
+        <a href="raw-dairy.html">Dairy Products</a>
+        <a href="raw-meat.html">Meat</a>
+        <a href="raw-homeneeds.html">Home Needs</a>
+    </div>
     <h2 class="headding-1">Fresh <span>Vegetables</span></h2>
     <div class="fresh-vegetables">
         <div class="vegetables-vegetables">
@@ -141,5 +154,41 @@
         <p class="rights">@ 2025 SV FRESH. All rights reserved.</p>
     </section>
 </footer>
+<script>
+  const categories = [
+    { name: "Fruits", link: "raw-fruits.html" },
+    { name: "Vegetables", link: "raw-vegetables.html" },
+    { name: "Meat", link: "raw-meat.html" },
+    { name: "Dairy", link: "raw-dairy.html" },
+    { name: "Home Needs", link: "raw-homeneeds.html" }
+  ];
+
+  const input = document.getElementById("searchInput");
+  const results = document.getElementById("categoryResults");
+
+  input.addEventListener("input", () => {
+    const value = input.value.toLowerCase().trim();
+    results.innerHTML = "";
+
+    if (value === "") return;
+
+    const filtered = categories.filter(cat =>
+      cat.name.toLowerCase().includes(value)
+    );
+
+    if (filtered.length === 0) {
+      results.innerHTML = "<div style='color:red;'>No results found.</div>";
+      return;
+    }
+
+    filtered.forEach(cat => {
+      const div = document.createElement("div");
+      div.className = "category-item";
+      div.textContent = cat.name;
+      div.onclick = () => (window.location.href = cat.link);
+      results.appendChild(div);
+    });
+  });
+</script>
 </body>
 </html>
